@@ -65,6 +65,13 @@ form {
   flex-direction: column;
 }
 
+form label {
+  font-size: 16px;
+  margin-bottom: 5px;
+  display: block; 
+  color: #333;
+}
+
 input[type="text"],
 input[type="date"],
 input[type="time"],

@@ -1,38 +1,40 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>To-Do List with Priority and Notifications</title>
-    <link rel="stylesheet" href="style.css" />
-    <link rel="icon" type="image/jpeg" href="./Assests/download.jpeg" />
-  </head>
-  <body>
-    <div class="todo-container">
-      <h1>To-Do List</h1>
-      <form id="taskForm">
-        <input
-          type="text"
-          id="taskInput"
-          placeholder="Add a new task"
-          required
-        />
-        <input type="date" id="taskDate" required />
-        <input type="time" id="taskTime" required />
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>To-Do List with Priority and Notifications</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="icon" type="image/jpeg" href="./Assests/download.jpeg" />
+</head>
+<body>
+  <div class="todo-container">
+    <h1>To-Do List</h1>
+    <form id="taskForm">
+      <input
+        type="text"
+        id="taskInput"
+        placeholder="Add a new task"
+        required
+      />
+      <label for="taskDate">Select Date</label>
+      <input type="date" id="taskDate" required />
+      <label for="taskTime">Select Time</label>
+      <input type="time" id="taskTime" required />
 
-        <!-- Task priority selector -->
-        <select id="taskPriority" required>
-          <option value="" disabled selected>Priority</option>
-          <option value="low">Low</option>
-          <option value="medium">Medium</option>
-          <option value="high">High</option>
-        </select>
+      <!-- Task priority selector -->
+      <select id="taskPriority" required>
+        <option value="" disabled selected>Priority</option>
+        <option value="low">Low</option>
+        <option value="medium">Medium</option>
+        <option value="high">High</option>
+      </select>
 
-        <button type="submit">Add Task</button>
-      </form>
-      <ul id="taskList"></ul>
-    </div>
+      <button type="submit">Add Task</button>
+    </form>
+    <ul id="taskList"></ul>
+  </div>
 
-    <script src="script.js"></script>
-  </body>
+  <script src="script.js"></script>
+</body>
 </html>
