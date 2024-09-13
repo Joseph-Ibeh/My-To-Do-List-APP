@@ -3,15 +3,6 @@ document.addEventListener("DOMContentLoaded", loadTasks);
 const taskForm = document.getElementById("taskForm");
 const taskList = document.getElementById("taskList");
 
-// Request permission for notifications
-if (Notification.permission !== "granted") {
-  Notification.requestPermission().then((permission) => {
-    if (permission === "denied") {
-      console.log("Notifications denied by the user.");
-    }
-  });
-}
-
 taskForm.addEventListener("submit", addTask);
 
 function loadTasks() {
@@ -31,6 +22,15 @@ function addTask(event) {
   if (!taskInput || !taskDate || !taskTime || !taskPriority) {
     alert("Please fill all fields");
     return;
+  }
+
+  // permission for notifications only when the user submits a task
+  if (Notification.permission !== "granted") {
+    Notification.requestPermission().then((permission) => {
+      if (permission === "denied") {
+        console.log("Notifications denied by the user.");
+      }
+    });
   }
 
   // Combine date and time and convert to UTC
