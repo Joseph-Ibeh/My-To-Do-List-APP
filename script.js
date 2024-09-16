@@ -10,7 +10,6 @@ function loadTasks() {
   tasks.forEach((task) => renderTask(task));
 }
 
-// Add a task
 function addTask(event) {
   event.preventDefault();
 
@@ -24,7 +23,6 @@ function addTask(event) {
     return;
   }
 
-  // permission for notifications only when the user submits a task
   if (Notification.permission !== "granted") {
     Notification.requestPermission().then((permission) => {
       if (permission === "denied") {
@@ -33,7 +31,6 @@ function addTask(event) {
     });
   }
 
-  // Combine date and time and convert to UTC
   const taskDateTimeLocal = new Date(`${taskDate}T${taskTime}`);
   const taskDateTimeUTC = taskDateTimeLocal.toISOString();
 
@@ -55,13 +52,11 @@ function addTask(event) {
   taskForm.reset();
 }
 
-// Render task to the UI
 function renderTask(task) {
   const li = document.createElement("li");
   li.classList.add(`${task.priority}-priority`);
-  li.setAttribute("data-id", task.id); // For easier deletion
-
-  // Convert UTC time back to local time
+  li.setAttribute("data-id", task.id);
+  //Loal time to UTC//
   const taskDateTimeLocal = new Date(task.dateTimeUTC);
   const taskDate = taskDateTimeLocal.toLocaleDateString();
   const taskTime = taskDateTimeLocal.toLocaleTimeString();
@@ -74,31 +69,26 @@ function renderTask(task) {
 
   taskList.appendChild(li);
 
-  // Add an event listener to the delete button
   li.querySelector(".deleteBtn").addEventListener("click", () => {
     li.remove();
     deleteTask(task.id);
   });
 
-  // Check for alarm and show notification
   checkForAlarm(task);
 }
-
-// Save task to local storage
+//save task-Local storage//
 function saveTask(task) {
   const tasks = JSON.parse(localStorage.getItem("tasks")) || [];
   tasks.push(task);
   localStorage.setItem("tasks", JSON.stringify(tasks));
 }
 
-// Delete task from local storage
 function deleteTask(taskId) {
   let tasks = JSON.parse(localStorage.getItem("tasks")) || [];
   tasks = tasks.filter((task) => task.id !== taskId);
   localStorage.setItem("tasks", JSON.stringify(tasks));
 }
-
-// Check for alarm
+//Alarm//
 function checkForAlarm(task) {
   const now = new Date();
   const taskDateTime = new Date(task.dateTimeUTC);
@@ -107,15 +97,13 @@ function checkForAlarm(task) {
 
   if (timeUntilAlarm > 0) {
     setTimeout(() => {
-      // Show the notification when the time is right
       showNotification(task);
     }, timeUntilAlarm);
   } else {
     console.log(`Task "${task.text}" is scheduled for a past time.`);
   }
 }
-
-// Function to show notifications
+//show Not...//
 function showNotification(task) {
   if (Notification.permission === "granted") {
     const taskDateTimeLocal = new Date(task.dateTimeUTC);
@@ -125,15 +113,12 @@ function showNotification(task) {
     });
   }
 }
-
-// Function to mark task as completed
+//Mark completed//
 function markAsCompleted(button) {
-  const listItem = button.parentElement; // Get the parent <li> element
+  const listItem = button.parentElement;
 
-  // Toggle the 'completed' class on the <li> element
   listItem.classList.toggle("completed");
 
-  // Show a congratulatory message when the task is completed
   if (listItem.classList.contains("completed")) {
     alert("Congratulations! 🎉 Task marked as completed.");
   }

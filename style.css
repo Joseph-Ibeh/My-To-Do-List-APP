@@ -18,21 +18,15 @@ body {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
-/* Glowing effect */
 #title {
-  font-size: 2.5em; 
-  color: #fff; 
+  font-size: 2.5em;
+  color: #fff;
   text-align: center;
-  margin: 20px 0; 
-  text-shadow: 
-    0 0 5px rgba(255, 105, 180, 0.8), 
-    0 0 10px rgba(255, 105, 180, 0.7), 
-    0 0 15px rgba(255, 105, 180, 0.6),
-    0 0 20px rgba(255, 105, 180, 0.5),
-    0 0 25px rgba(255, 105, 180, 0.4);
+  margin: 20px 0;
+  text-shadow: 0 0 5px rgba(255, 105, 180, 0.8),
+    0 0 10px rgba(255, 105, 180, 0.7), 0 0 15px rgba(255, 105, 180, 0.6),
+    0 0 20px rgba(255, 105, 180, 0.5), 0 0 25px rgba(255, 105, 180, 0.4);
 }
-
-
 
 h1 {
   font-size: 2.5em;
@@ -93,10 +87,46 @@ li {
   align-items: center;
 }
 
+.low-priority {
+  border-left: 5px solid green;
+}
+
+.medium-priority {
+  border-left: 5px solid orange;
+}
+
+.high-priority {
+  border-left: 5px solid red;
+}
+
+.completed {
+  text-decoration: line-through;
+  color: grey;
+}
+
+@media (max-width: 1024px) {
+  .todo-container {
+    width: 95%;
+    padding: 15px;
+  }
+
+  h1 {
+    font-size: 2em;
+  }
+
+  input[type="text"],
+  input[type="date"],
+  input[type="time"],
+  select,
+  button {
+    font-size: 15px;
+  }
+}
+
 @media (max-width: 768px) {
   .todo-container {
     width: 100%;
-    padding: 15px;
+    padding: 10px;
   }
 
   h1 {
@@ -113,6 +143,10 @@ li {
 }
 
 @media (max-width: 480px) {
+  .todo-container {
+    padding: 5px;
+  }
+
   h1 {
     font-size: 1.5em;
   }
